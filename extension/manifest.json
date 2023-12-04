@@ -1,0 +1,40 @@
+{
+  "manifest_version": 2,
+  "name": "배속 기록 프로그램_by 한철현",
+  "version": "1.0",
+  "description": "유튜브 배속 정보를 수집합니다. 연구 외 목적으로 활용되지 않습니다. 유튜브 배속 정보 이외의 정보를 수집하지 않습니다. 감사합니당!",
+  "permissions": [
+    "storage"
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": [
+              "firebase-app.js",
+              "firebase-database.js",
+              "jquery.min.js"
+
+    
+    ]
+    },
+    {
+      "matches": ["*://*.youtube.com/*"],
+      "js": ["content.js"]}
+  ],
+  "web_accessible_resources": [
+    "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js",
+    "https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js",
+    "https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"
+  ],  
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon_48.png"
+  },
+  "icons": {
+    "48": "icon_48.png"
+  },
+  "content_security_policy": "script-src 'self' https://www.gstatic.com/ https://*.firebaseio.com https://*.firebaseio-demo.com; object-src 'self'"
+}
